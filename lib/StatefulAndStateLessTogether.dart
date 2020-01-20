@@ -1,108 +1,62 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
-void main() {
-  var myApp= MaterialApp(
-    home : MyButton(),
-  );
+void main() => runApp(StateLess());
 
-  runApp(myApp);
-}
-
-
-class MyButton extends StatefulWidget{
-  @override
-  MyButtonState createState() {
-    return MyButtonState();
-  }
-}
-
-class MyButtonState extends State<MyButton> {
-  int counter = 0;
-  String defaultCount = "";
-
-  void displayCount(){
-    setState(() {
-      counter++;
-      defaultCount = counter.toString();
-    });
-  }
-
-
-  @override
-  Widget build(BuildContext context) {
-    return  Scaffold(
-      appBar: AppBar(
-        title: Text('New entry'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(padding: EdgeInsets.all(10),),
-            Text('hi'),
-            Text("Counter clicked : "+ defaultCount,
-              style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30,),
-            ),
-            RaisedButton(child: Text('ClickButton'),onPressed: displayCount,)
-          ],
-        ),
-      ),
-    );
-
-  }
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-// MyStatelessWidget
-/*class MyStatelessWidget extends StatelessWidget{
+class StateLess extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primaryColor: Colors.red,
-        accentColor: Colors.orange,
-      ),
-      title: 'Isaac',
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('isaac'),
+        theme: ThemeData(
+          primaryColor: Colors.red,
+          accentColor: Colors.orange,
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: Icon(Icons.navigation),
-          backgroundColor: Colors.green,
-        ),
-        body: Center(
+        title: 'Isaac',
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text('isaac'),
+          ),
+          body: HomePage(),
+        ));
+  }
+}
 
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  var color = [Colors.orange, Colors.red, Colors.black45, Colors.blue];
+
+  var currentColor = Colors.white;
+
+  void doThisAfterClick() {
+    var randomColor = Random().nextInt(color.length - 1);
+    setState(() {
+      currentColor = color[randomColor];
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        color: currentColor,
+        child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text('hi'),
-              Text('hello'),
-              RaisedButton(child: Text('Click'),onPressed: () {},)
+              Text(currentColor.toString()),
+              RaisedButton(
+                child: Text('Click'),
+                onPressed: () {
+                  doThisAfterClick();
+                },
+              ),
             ],
           ),
-        ),
-      ),
-      color: Colors.black,
-
-    );
+        ));
   }
-
 }
-
-void main() {
-  runApp(MyStatelessWidget());
-}*/

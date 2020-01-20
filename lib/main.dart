@@ -4,11 +4,10 @@ void main() {
   var myApp= MaterialApp(
     home : MyButton(),
   );
-
   runApp(myApp);
 }
 
-
+//Stateful widget
 class MyButton extends StatefulWidget{
   @override
   MyButtonState createState() {
@@ -46,11 +45,7 @@ class MyButtonState extends State<MyButton> {
             RaisedButton(child: Text('Click'),onPressed: displayCount,)
           ],
         ),
-
       ),
-
-
-
     );
 
   }

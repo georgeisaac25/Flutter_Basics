@@ -16,7 +16,7 @@ class StateLess extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: Scaffold(
           appBar: AppBar(
-            title: Text('isaac'),
+            title: Text('moses'),
           ),
           body: HomePage(),
         ));
@@ -54,6 +54,9 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () {
                   doThisAfterClick();
                 },
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
               ),
             ],
           ),
